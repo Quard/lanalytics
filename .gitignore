@@ -1,0 +1,11 @@
+env/*
+.env/*
+*.pyc
+build/*
+.venv
+Makefile.def
+Makefile.production
+Makefile.prod
+Makefile.staging
+*.log
+

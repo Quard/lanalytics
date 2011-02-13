@@ -1,0 +1,13 @@
+
+deploy_user=production
+deploy_target=example.com
+
+# branch in git
+deploy_branch=master
+
+# application name (v1 at this moment)
+deploy_app=v1
+
+# name of deployment script in .deployment dir
+deploy_mode=production
+

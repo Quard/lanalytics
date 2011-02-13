@@ -1,0 +1,33 @@
+#!/bin/bash
+
+ENV_BASE=.envs
+APP_BASE=apps
+
+APP=$1
+BRANCH=$2
+
+# constants
+APP_DIR="$HOME/$APP_BASE/$APP"
+ENV_DIR="$HOME/$ENV_BASE/$APP"
+
+[ -z "$APP" ] && echo "ERROR: please, specify application to deploy (first argument)" && exit 1;
+[ -z "$BRANCH" ] && echo "ERROR: please, specify branch to deploy(second argument)" && exit 1;
+[ ! -d "$APP_DIR" ] && echo "ERROR: application $(APP) not found in active environment" && exit 1;
+
+# move on
+# activate virtual environment
+source $ENV_DIR/bin/activate
+
+# pull changes
+cd $APP_DIR
+git pull origin $BRANCH
+
+# load requirements (if new available)
+pip install -r requirements.txt
+
+# run migrations
+python alps/manage.py migrate
+
+# restart uwsgi instance
+$HOME/bin/$APP restart
+

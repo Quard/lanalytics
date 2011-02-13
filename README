@@ -1,0 +1,25 @@
+INITIALIZE PROJECT
+    Should be executed only once after cloning of template repository
+
+    % make project -e PROJECT=projectname
+
+
+INITIALIZE ENVIRONMENT:
+    % make install
+
+COMMANDS REFERENCE:
+    Execute django command
+    % make manage -e CMD="djangocommand"
+
+    Execute syncdb
+    % make syncdb
+
+    Execute shell_plus from django-command-extensions
+    % make shell
+
+    Enter to database shell
+    % make dbshell
+
+    Start automigration of some django application
+    % make migrate -e APP=application
+

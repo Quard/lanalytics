@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+{% load analytics %}
+
+<head>
+    <title>Project</title>
+	<script type="text/javascript" charset="utf-8" src="{{ MEDIA_URL }}js/lib/jquery.min.js"></script>
+    {% block extra-head %}
+        
+    {% endblock %}
+</head>
+
+<body>
+{% block header %}
+    <div id="header">
+        
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content">
+        
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div id="footer">
+        
+    </div>
+{% analytics %}
+{% endblock %}
+</body>
+</html>

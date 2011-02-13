@@ -1,0 +1,12 @@
+[submodule "project/static_media/js/lib/jquery"]
+	path = project/static_media/js/lib/jquery
+	url = git://github.com/jquery/jquery.git
+[submodule "project/static_media/js/lib/node"]
+	path = project/static_media/js/lib/node
+	url = git://github.com/ry/node.git
+[submodule "testing/static_media/js/lib/node"]
+	path = testing/static_media/js/lib/node
+	url = git://github.com/ry/node.git
+[submodule "testing/static_media/js/lib/jquery"]
+	path = testing/static_media/js/lib/jquery
+	url = git://github.com/jquery/jquery.git
