@@ -73,6 +73,15 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleBackend',
+    'social_auth.backends.yahoo.YahooBackend',
+    'social_auth.backends.contrib.LiveJournalBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 ROOT_URLCONF = '%s.urls' % (PROJECT_NAME,)
 
 TEMPLATE_DIRS = (
@@ -91,7 +100,10 @@ INSTALLED_APPS = (
     'devserver',
     'staticmedia',
     'compress',
-    'google_analytics',
+    'debug_toolbar',
+    # 'google_analytics',
+    'south',
+    'social_auth',
 
     # additional, keep project's namespace
 
@@ -101,6 +113,15 @@ GOOGLE_ANALYTICS_MODEL = True
 
 if not DEBUG:
     CACHE_BACKEND = 'locmem://'
+
+# social auth
+TWITTER_CONSUMER_KEY     = '24gQLfQTV0WccyxYT4rfg'
+TWITTER_CONSUMER_SECRET  = 'BWxqUS11hUyLIDoVO9YQFzZo3893VS23ocmCl9f6yS0'
+FACEBOOK_APP_ID          = '173059716074005'
+FACEBOOK_API_SECRET      = 'd8328bf5e6067a1c7ded2a28b431a7dd'
+# TODO: need verefication for domain
+GOOGLE_CONSUMER_KEY      = ''
+GOOGLE_CONSUMER_SECRET   = ''
 
 # import common settings
 from common_settings import *

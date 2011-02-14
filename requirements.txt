@@ -8,3 +8,5 @@ sqlparse
 werkzeug
 guppy
 -e git+git://github.com/clintecker/django-google-analytics.git#egg=django-google-analytics
+django-social-auth
+south
