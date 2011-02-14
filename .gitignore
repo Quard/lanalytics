@@ -8,4 +8,4 @@ Makefile.production
 Makefile.prod
 Makefile.staging
 *.log
-
+*.db

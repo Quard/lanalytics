@@ -6,6 +6,7 @@
 
 <head>
     <title>Project</title>
+    <meta name="google-site-verification" content="v5gjCikp_w6xk1-FG6mj089aECwVwZcXehyrKM1pqHI" />
 	<script type="text/javascript" charset="utf-8" src="{{ MEDIA_URL }}js/lib/jquery.min.js"></script>
     {% block extra-head %}
         
@@ -15,7 +16,19 @@
 <body>
 {% block header %}
     <div id="header">
-        
+        {% if not user.is_authenticated %}
+            Sign in by
+            <a href="{% url begin twitter  %}">twitter</a>
+            <a href="{% url begin facebook %}">facebook</a>
+            <a href="{% url begin google %}">google</a>
+            <a href="{% url begin yahoo %}">yahoo</a>
+            <br />
+            <form action="{% url login %}">
+                <label for="id_username">Login</label> <input type="text" name="username" id="id_password" /><br />
+                <label for="id_password">Password</label> <input type="password" name="password" id="id_password" /><br />
+                <input type="submit" value="Sing In" />
+            </form>
+        {% endif %}
     </div>
 {% endblock %}
 {% block content %}
