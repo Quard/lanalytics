@@ -12,7 +12,7 @@ class Analytic(models.Model):
     screen_resolution = models.CharField(max_length=9)
     window_dimensions = models.CharField(max_length=9)
     enabled_cookie = models.BooleanField()
-    have_flash = models.BookeanField()
+    have_flash = models.BooleanField()
     have_java = models.NullBooleanField()
 
     refferrer = models.URLField(max_length=500, null=True, blank=True)

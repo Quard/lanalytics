@@ -106,7 +106,7 @@ INSTALLED_APPS = (
     'social_auth',
 
     # additional, keep project's namespace
-
+    'lanalytics.analytics',
 )
 
 GOOGLE_ANALYTICS_MODEL = True
