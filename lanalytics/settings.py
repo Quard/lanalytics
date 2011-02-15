@@ -60,7 +60,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.request",
     "django.core.context_processors.media",
-    "django.core.context_processors.static",
+    # "django.core.context_processors.static",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,7 +78,7 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',
     'social_auth.backends.google.GoogleBackend',
     'social_auth.backends.yahoo.YahooBackend',
-    'social_auth.backends.contrib.LiveJournalBackend',
+    'social_auth.backends.contrib.livejournal.LiveJournalBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 

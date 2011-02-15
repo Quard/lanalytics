@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.username.label_tag }}{{ form.username }}<br />
+        {{ form.username.errors }}<br />
+
+        {{ form.password.label_tag }}{{ form.password }}<br />
+        {{ form.password.errors }}<br />
+        
+        {{ form.password_confirm.label_tag }}{{ form.password_confirm }}<br />
+        {{ form.password_confirm.errors }}<br />
+        
+        {{ form.email.label_tag }}{{ form.email }}<br />
+        {{ form.email.errors }}<br />
+        
+        {# {{ form..label_tag }}{{ form. }}<br /> #}
+        {# {{ form..errors }}<br /> #}
+        <input type="submit" value="Sign Up" />
+    </form>
+
+{% endblock %}

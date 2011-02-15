@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+
+<div>
+    <form action="{% url login %}" method="post">
+        {% csrf_token %}
+        {{ form.username.label_tag }}{{ form.username }}<br />
+        {{ form.password.label_tag }}{{ form.password }}<br />
+        <input type="submit" value="sing in" />
+    </form>
+</div>
+
+{% endblock %}
