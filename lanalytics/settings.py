@@ -107,6 +107,7 @@ INSTALLED_APPS = (
 
     # additional, keep project's namespace
     'lanalytics.analytics',
+    'lanalytics.statistic',
 )
 
 GOOGLE_ANALYTICS_MODEL = True
