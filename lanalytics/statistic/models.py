@@ -1,4 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
+class Site(models.Model):
+    owner = models.ForeignKey(User, related_name='sites')
+    key = models.CharField(max_length=40, unique=True, verbose_name='Key')
+    url = models.URLField(unique=True, verbose_name='URL')
+    date_created = models.DateTimeField(auto_now_add=True)
 
 
 class BaseStatistic(models.Model):

@@ -1,7 +1,10 @@
 from django.db import models
 
+from lanalytics.statistic.models import Site
+
 
 class Analytic(models.Model):
+    site = models.ForeignKey(Site, related_name='analytics')
     visitor = models.CharField(max_length=32)
     browser = models.CharField(max_length=20)
     browser_version = models.CharField(max_length=15)
