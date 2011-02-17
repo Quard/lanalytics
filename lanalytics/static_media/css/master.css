@@ -79,6 +79,18 @@ a {
     text-shadow: 1px 1px 1px #ddd;
 }
 
+#content .social {
+    padding: 20px;
+}
+#content .social a {
+    font-size: 120%;
+    text-decoration: none;
+    margin: 1px 10px;
+}
+#content .social #openid_lj_user {
+    background: #fff url(https://www.livejournal.com/img/userinfo.gif?v=1) no-repeat left;
+    padding-left: 20px;
+}
 #content .box {
     padding: 15px;
     margin: 5px;
