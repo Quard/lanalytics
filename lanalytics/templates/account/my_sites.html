@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <h2>sites: {{ user.sites.count }}</h2>
+    </div>
+
+    {% for site in user.sites.all %}
+        <div class="site box">
+            <a href="{% url delete_site pk=site.pk %}" class="delete" alt="delete" title="delete">x</a>
+            <h1><a href="{% url edit_site pk=site.pk %}">{{ site.name }}</h1>
+            <a href="{{ site.url }}" target="_blank">{{ site.url }}</a><br />
+            {{ site.key }}
+        </div>
+    {% endfor %}
+    
+{% endblock %}

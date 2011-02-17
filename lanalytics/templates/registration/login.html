@@ -5,13 +5,32 @@
 
 {% block content %}
 
-<div>
-    <form action="{% url login %}" method="post">
-        {% csrf_token %}
-        {{ form.username.label_tag }}{{ form.username }}<br />
-        {{ form.password.label_tag }}{{ form.password }}<br />
-        <input type="submit" value="sing in" />
-    </form>
+<div class="yui3-g">
+    <div class="yui3-u-1-2">
+        <form action="{% url login %}" method="post">
+            {% csrf_token %}
+            {{ form.username.label_tag }}{{ form.username }}<br />
+            {{ form.password.label_tag }}{{ form.password }}<br />
+            <div class="buttons">
+                <a href="{% url registration %}">Registration</a>
+                <input type="submit" value="sing in" />
+            </div>
+        </form>
+    </div>
+    <div class="yui3-u-1-2">
+        <div class="social">
+            <a href="{% url begin 'google' %}">Google</a>
+            <a href="{% url begin 'twitter' %}">Twitter</a>
+            <a href="{% url begin 'facebook' %}">Facebook</a>
+            <a href="{% url begin 'yahoo' %}">Yahoo</a>
+            <div>
+                <form action="{% url begin "livejournal" %}" method="post">{% csrf_token %}
+                    <input id="openid_lj_user" type="text" value="" name="openid_lj_user" />
+                    <input type="submit" value="Login"/>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

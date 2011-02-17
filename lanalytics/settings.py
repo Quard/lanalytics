@@ -106,6 +106,7 @@ INSTALLED_APPS = (
     'social_auth',
 
     # additional, keep project's namespace
+    'lanalytics.api',
     'lanalytics.analytics',
     'lanalytics.statistic',
 )
@@ -123,6 +124,8 @@ FACEBOOK_API_SECRET      = 'd8328bf5e6067a1c7ded2a28b431a7dd'
 # TODO: need verefication for domain
 GOOGLE_CONSUMER_KEY      = ''
 GOOGLE_CONSUMER_SECRET   = ''
+
+SITE_KEY = '_site_key'
 
 # import common settings
 from common_settings import *
