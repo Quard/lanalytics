@@ -106,6 +106,7 @@ INSTALLED_APPS = (
     'social_auth',
 
     # additional, keep project's namespace
+    'lanalytics.api',
     'lanalytics.analytics',
     'lanalytics.statistic',
 )

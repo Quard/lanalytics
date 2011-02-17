@@ -1,6 +1,7 @@
+from django.conf import settings
 from piston.handler import BaseHandler
 
-from lanalytics.analytic.forms import AnalyticForm
+from lanalytics.analytics.forms import AnalyticForm
 
 
 class PostHandler(BaseHandler):
@@ -8,7 +9,7 @@ class PostHandler(BaseHandler):
 
     def post(self, request):
         post = request.POST.copy()
-        post['site'] = request.session['site_key']
+        post['site'] = request.session[settings.SITE_KEY]
         form = AnalyticForm(post)
         if form.is_valid():
             form.save()
