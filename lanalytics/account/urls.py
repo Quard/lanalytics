@@ -5,6 +5,7 @@ urlpatterns = patterns('lanalytics.account.views',
     url(r'$^', 'my_sites', name='my_sites'),
     url(r'site/add/$', 'edit_site', name='add_site'),
     url(r'site/(?P<pk>\d+)/edit/$', 'edit_site', name='edit_site'),
+    url(r'site/(?P<pk>\d+)/delete/$', 'delete_site', name='delete_site'),
     url(r'account/registration/$', 'registration', name='registration'),
 )
 

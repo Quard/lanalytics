@@ -69,6 +69,16 @@ a {
     text-decoration: none;
 }
 
+#content .site h1 a {
+    color: #000;
+}
+#content .site a.delete {
+    float: right;
+    text-decoration: none;
+    color: #933;
+    text-shadow: 1px 1px 1px #ddd;
+}
+
 #content .box {
     padding: 15px;
     margin: 5px;

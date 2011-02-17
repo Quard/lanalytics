@@ -69,3 +69,11 @@ def edit_site(request, pk=None):
         'site': site,
         'current_menu': 'add-site',
     }
+
+
+@login_required
+def delete_site(request, pk=None):
+    site = get_object_or_404(Site, pk=pk)
+    site.delete()
+
+    return redirect(reverse('my_sites'))
