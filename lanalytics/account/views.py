@@ -1,8 +1,12 @@
 from django.conf import settings
-from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, get_object_or_404
 from annoying.decorators import render_to
 
 from lanalytics.account.forms import RegistrationForm
+from lanalytics.statistic.models import Site
+from lanalytics.statistic.forms import SiteForm
 
 
 @render_to('registration/registration.html')
@@ -20,4 +24,48 @@ def registration(request):
 
     return {
         'form': form,
+    }
+
+
+@login_required
+@render_to('account/profile.html')
+def profile(request):
+    return {
+        'current_menu': 'profile',
+    }
+
+
+@login_required
+@render_to('account/my_sites.html')
+def my_sites(request):
+    return {
+        'current_menu': 'my-sites',
+    }
+
+
+@login_required
+@render_to('account/edit_site.html')
+def edit_site(request, pk=None):
+    site = None
+    if pk:
+        site = get_object_or_404(Site, pk=pk)
+
+    form = SiteForm(instance=site)
+    if request.method == 'POST':
+        post = request.POST.copy()
+        post['owner'] = request.user.pk
+        post['key'] = '-'
+        form = SiteForm(post, instance=site)
+        if form.is_valid():
+            form.save()
+
+            return redirect(reverse('my_sites'))
+        else:
+            print form.errors
+    
+    
+    return {
+        'form': form,
+        'site': site,
+        'current_menu': 'add-site',
     }

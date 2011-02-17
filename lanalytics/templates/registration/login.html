@@ -10,7 +10,10 @@
         {% csrf_token %}
         {{ form.username.label_tag }}{{ form.username }}<br />
         {{ form.password.label_tag }}{{ form.password }}<br />
-        <input type="submit" value="sing in" />
+        <div class="buttons">
+            <a href="{% url registration %}">Registration</a>
+            <input type="submit" value="sing in" />
+        </div>
     </form>
 </div>
 

@@ -1,0 +1,97 @@
+a {
+    color: #04f;
+}
+
+#header h1 {
+    margin-left: 10%;
+}
+#header .user input {
+    width: 36%;
+}
+#header .user input[type=submit] {
+    width: auto;
+}
+#header ul.menu {
+    font-size: 105%;
+}
+#header ul.menu,
+#header ul.menu li {
+    margin: 0px;
+    list-style-type: none;
+}
+#header ul.menu li {
+    padding: 0px 2px;
+    margin: 2px 3px 0px 3px;
+    display: inline-block;
+    border-bottom: 3px #f63 solid;
+}
+#header ul.menu li.current {
+    border-bottom: 3px #fb0 solid;
+}
+#header ul.menu li a {
+    text-decoration: none;
+    color: #f63;
+}
+#header ul.menu li.current a {
+    color: #fb0;
+}
+
+
+#content form {
+    padding: 20px;
+    background-color: #9bc;
+    font-size: 110%;
+    display: inline-block;
+    margin: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+#content form label {
+    width: 100px;
+    text-align: right;
+    padding-right: 5px;
+    display: inline-block;
+}
+#content form input {
+    margin-bottom: 5px;
+    width: 350px;
+}
+#content form input[type=submit],
+#content form input[type=button] {
+    width: auto;
+}
+
+#content form .buttons {
+    margin-top: 15px;
+    text-align: right;
+}
+#content form a {
+    text-decoration: none;
+}
+
+#content .box {
+    padding: 15px;
+    margin: 5px;
+    display: inline-block;
+    background-color: #9bc;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+ul.errorlist {
+    border-left: 3px #f00 solid;
+    border-right: 3px #f00 solid;
+}
+ul.errorlist,
+ul.errorlist li {
+    list-style-type: none;
+    margin: 0px;
+}
+ul.errorlist li {
+    padding-left: 3px;
+    color: #900;
+}
+
+#footer {
+    margin: 3px 3%;
+}

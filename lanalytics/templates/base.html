@@ -5,17 +5,34 @@
 {# {% load analytics %} #}
 
 <head>
-    <title>Project</title>
+    <title>Lanalytics</title>
+    <link href="{{ MEDIA_URL }}css/yui3/reset-min.css" rel="stylesheet" type="text/css" media="screen" />                  
+    <link href="{{ MEDIA_URL }}css/yui3/base-min.css" rel="stylesheet" type="text/css" media="screen" />                   
+    <link href="{{ MEDIA_URL }}css/yui3/fonts-min.css" rel="stylesheet" type="text/css" media="screen" />                  
+    <link href="{{ MEDIA_URL }}css/yui3/grids-min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ MEDIA_URL }}css/master.css" rel="stylesheet" type="text/css" media="screen" />
     <meta name="google-site-verification" content="v5gjCikp_w6xk1-FG6mj089aECwVwZcXehyrKM1pqHI" />
-	<script type="text/javascript" charset="utf-8" src="{{ MEDIA_URL }}js/lib/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
     {% block extra-head %}
         
     {% endblock %}
 </head>
-
 <body>
-{% block header %}
+<div class="yui3-g">
     <div id="header">
+        <div class="yui3-u-5-24">
+            <h1>Lanalytics</h1>
+        </div>
+        <div class="yui3-u-13-24">
+            {% block header %}
+                <ul class="menu">
+                    <li{% if current_menu == 'add-site' %} class="current"{% endif %}><a href="{% url add_site %}">Add Site</a></li>
+                    <li{% if current_menu == 'my-sites' %} class="current"{% endif %}><a href="{% url my_sites %}">My Sites</a></li>
+                    <li{% if current_menu == 'profile' %} class="current"{% endif %}><a href="{% url profile %}">Profile</a></li>
+                </ul>
+            {% endblock %}
+        </div>
+        <div class="yui3-u-5-24 user">
         {% if not user.is_authenticated %}
             Sign in by
             <a href="{% url begin 'twitter' %}">twitter</a>
@@ -23,24 +40,22 @@
             <a href="{% url begin 'google' %}">google</a>
             <a href="{% url begin 'yahoo' %}">yahoo</a>
             <br />
-            <form action="{% url login %}">
-                <label for="id_username">Login</label> <input type="text" name="username" id="id_password" /><br />
-                <label for="id_password">Password</label> <input type="password" name="password" id="id_password" /><br />
+            <form action="{% url login %}" method="post">
+                <input type="text" name="username" id="id_password" />
+                <input type="password" name="password" id="id_password" />
                 <input type="submit" value="Sing In" />
             </form>
         {% endif %}
+        </div>
     </div>
-{% endblock %}
 
-<div id="content">
-    {% block content %}{% endblock %}
+    <div id="content" class="yui3-u-1">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div id="footer" class="yui3-u-1">
+        <a href="http://bitpapaya.com/" target="_blank">created by bitpapaya</a>{% block footer %}{% endblock %}
+    </div>
 </div>
-
-{% block footer %}
-    <div id="footer">
-        
-    </div>
-{# {% analytics %} #}
-{% endblock %}
 </body>
 </html>
