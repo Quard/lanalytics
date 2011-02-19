@@ -16,7 +16,7 @@ class Command(NoArgsCommand):
             resolution = {}
 
             last_update = Browser.objects.filter(site=site)\
-                .order_by('-id')
+                .order_by('-last_update')
             qs = None
             if last_update:
                 qs = Analytic.objects.filter(
