@@ -9,7 +9,7 @@ class Analytic(models.Model):
     browser = models.CharField(max_length=20)
     browser_version = models.CharField(max_length=15, null=True, blank=True)
     platform = models.CharField(max_length=20, null=True, blank=True)
-    platrorm_version = models.CharField(max_length=15, null=True, blank=True)
+    platform_version = models.CharField(max_length=15, null=True, blank=True)
     time_zone = models.IntegerField()
 
     screen_resolution = models.CharField(max_length=9)

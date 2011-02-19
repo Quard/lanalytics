@@ -19,19 +19,23 @@ class BaseStatistic(models.Model):
 
 
 class Browser(BaseStatistic):
+    site = models.ForeignKey(Site, related_name='browser')
     name = models.CharField(max_length=20)
     version = models.CharField(max_length=15)
 
 
 class OS(BaseStatistic):
+    site = models.ForeignKey(Site, related_name='os')
     name = models.CharField(max_length=20)
     version = models.CharField(max_length=15)
 
 
 class Refferrer(BaseStatistic):
+    site = models.ForeignKey(Site, related_name='refferrer')
     host = models.CharField(max_length=50)
     url = models.CharField(max_length=300)
 
 
 class ScreenResolution(BaseStatistic):
+    site = models.ForeignKey(Site, related_name='resolution')
     resolution = models.CharField(max_length=9)
