@@ -4,7 +4,7 @@
         have_flash: navigator.plugins["Shockwave Flash1"] || "",
         screen_resolution: screen.width + "x" + screen.height,
         enabled_cookie: navigator.cookieEnabled,
-        referrer: document.referrer
+        refferrer: document.referrer
     };
     if (typeof navigator.cookieEnabled=="undefined" && !d["cookie"]) {
         document.cookie = "_la_test_cookie";
