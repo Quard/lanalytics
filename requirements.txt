@@ -12,3 +12,4 @@ django-social-auth
 south
 django-annoying
 django-piston
+httpagentparser

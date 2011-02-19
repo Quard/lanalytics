@@ -10,5 +10,6 @@ ad = {'authentication': SiteKeyAuth()}
 post_resource = Resource(PostHandler, **ad)
 
 urlpatterns = patterns('',
-    url(r'^post\.(?P<emitter_format>.+)$', post_resource, name='api_post')
+    url(r'^la_push\.js$', post_resource, {'emitter_format': 'json'},
+        name='api_post'),
 )
