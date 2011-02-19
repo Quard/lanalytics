@@ -114,6 +114,12 @@ ul.errorlist li {
     color: #900;
 }
 
+#js_code {
+    margin-top: 10%;
+    width: 98%;
+    height: 100px;
+}
+
 #footer {
     margin: 3px 3%;
 }

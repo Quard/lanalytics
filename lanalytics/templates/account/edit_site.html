@@ -2,20 +2,32 @@
 
 {% block content %}
 
-    <form method="post">
-        {% csrf_token %}
-        <h1>Adding site</h1>
-        {{ form.name.label_tag }}{{ form.name }}<br />
-        {{ form.name.errors }}
-        {{ form.url.label_tag }}{{ form.url }}<br />
-        {{ form.url.errors }}
+<div class="yui3-g">
+    <div class="yui3-u-1-2">
+        <form method="post">
+            {% csrf_token %}
+            <h1>Adding site</h1>
+            {{ form.name.label_tag }}{{ form.name }}<br />
+            {{ form.name.errors }}
+            {{ form.url.label_tag }}{{ form.url }}<br />
+            {{ form.url.errors }}
+            {% if site %}
+                <label>KEY</label><span>{{ site.key }}</span>
+            {% endif %}
+            <div class="buttons">
+                <a href="javascript:history.go(-1);">Cancel</a>
+                <input type="submit" value="Add" />
+            </div>
+        </form>
+    </div>
+    <div class="yui3-u-1-2">
         {% if site %}
-            <label>KEY</label><span>{{ site.key }}</span>
+        <textarea id="js_code">
+<script type="text/javascript">var la_key = "{{ site.key }}";</script>
+<script type="text/javascript" src="http://lanalytics.bitpapaya.com"></script>
+        </textarea>
         {% endif %}
-        <div class="buttons">
-            <a href="javascript:history.go(-1);">Cancel</a>
-            <input type="submit" value="Add" />
-        </div>
-    </form>
+    </div>
+</div>
 
 {% endblock %}
