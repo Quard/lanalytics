@@ -7,8 +7,11 @@
 
     {% for site in user.sites.all %}
         <div class="site box">
-            <a href="{% url delete_site pk=site.pk %}" class="delete" alt="delete" title="delete">x</a>
-            <h1><a href="{% url edit_site pk=site.pk %}">{{ site.name }}</h1>
+            <div class="delete">
+                <a href="{% url edit_site pk=site.pk %}">edit</a>
+                <a href="{% url delete_site pk=site.pk %}" alt="delete" title="delete">x</a>
+            </div>
+            <h1><a href="{% url site_statistic pk=site.pk %}">{{ site.name }}</h1>
             <a href="{{ site.url }}" target="_blank">{{ site.url }}</a><br />
             {{ site.key }}
         </div>

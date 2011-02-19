@@ -13,3 +13,4 @@ south
 django-annoying
 django-piston
 httpagentparser
+GChartWrapper

@@ -126,6 +126,7 @@ GOOGLE_CONSUMER_KEY      = ''
 GOOGLE_CONSUMER_SECRET   = ''
 
 SITE_KEY = '_site_key'
+STATISTIC_GRAPH_DELTA = 60 * 10
 
 # import common settings
 from common_settings import *
