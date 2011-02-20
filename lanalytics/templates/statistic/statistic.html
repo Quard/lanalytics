@@ -7,16 +7,16 @@
         <img src="{% url statistic_graph pk=site.pk %}" width="800" height="200" />
 
         <div>
-            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_browsers }}" />
-            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_browsers_version }}" />
+            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Browser&chs=300x140&{{ chart_browsers|safe }}" />
+            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Browser+version&chs=300x140&{{ chart_browsers_version|safe }}" />
         </div>
         <div>
-            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_os }}" />
-            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_os_version }}" />
+            <img src="https://chart.googleapis.com/chart?cht=p&chtt=OS&chs=300x140&{{ chart_os|safe }}" />
+            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Flash+version&chs=300x140&{{ chart_flash|safe }}" />
         </div>
         <div>
-            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_resolution }}" />
-            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_referrer }}" />
+            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Screen+resolution&chs=300x140&{{ chart_resolution|safe }}" />
+            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Refeffer&chs=300x140&{{ chart_referrer|safe }}" />
         </div>
     </div>
 {% endblock %}

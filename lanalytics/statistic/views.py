@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from annoying.decorators import render_to
 
 from lanalytics.statistic.models import Site, Browser, OS, Refferrer, \
-    ScreenResolution
+    ScreenResolution, Flash
 from lanalytics.analytics.models import Analytic
 
 
@@ -44,12 +44,12 @@ def statistic(request, pk):
     )
     content['chart_os'] = chart_os
 
-    qs = list(OS.objects.filter(site=site, version__isnull=False))
-    chart_os_version = 'chd=t:%s&chl=%s' % (
-        ','.join([str(i.count) for i in qs]),
-        '|'.join(['%s %s' % (i.name, i.version) for i in qs]),
-    )
-    content['chart_os_version'] = chart_os_version
+    # qs = list(OS.objects.filter(site=site, version__isnull=False))
+    # chart_os_version = 'chd=t:%s&chl=%s' % (
+    #     ','.join([str(i.count) for i in qs]),
+    #     '|'.join(['%s %s' % (i.name, i.version) for i in qs]),
+    # )
+    # content['chart_os_version'] = chart_os_version
 
     qs = list(ScreenResolution.objects.filter(site=site))
     chart_resolution = 'chd=t:%s&chl=%s' % (
@@ -64,6 +64,13 @@ def statistic(request, pk):
         '|'.join([i.host for i in qs]),
     )
     content['chart_referrer'] = chart_referrer
+
+    qs = list(Flash.objects.filter(site=site))
+    chart_flash = 'chd=t:%s&chl=%s' % (
+        ','.join([str(i.count) for i in qs]),
+        '|'.join([i.version for i in qs]),
+    )
+    content['chart_flash'] = chart_flash
 
     return content
 

@@ -3,7 +3,7 @@ from django.core.management.base import NoArgsCommand
 
 from lanalytics.analytics.models import Analytic
 from lanalytics.statistic.models import Site, Browser, OS, Refferrer, \
-    ScreenResolution
+    ScreenResolution, Flash
 
 
 class Command(NoArgsCommand):
@@ -14,6 +14,7 @@ class Command(NoArgsCommand):
             os = {}
             referrer = {}
             resolution = {}
+            flash = {}
 
             last_update = Browser.objects.filter(site=site)\
                 .order_by('-last_update')
@@ -42,7 +43,7 @@ class Command(NoArgsCommand):
                 if not an.platform in os:
                     os[an.platform] = {'__count__': 0}
                     
-                #if an.platform_version:
+                # if an.platform_version:
                 #    if not an.platform_version in os[an.platform]:
                 #        os[an.platform][an.platform_version] = 0
                 #    os[an.platform][an.platform_version] += 1
@@ -60,6 +61,12 @@ class Command(NoArgsCommand):
                     resolution[an.screen_resolution] = 0
 
                 resolution[an.screen_resolution] += 1
+
+                # flash version
+                if not an.flash in flash:
+                    flash[an.flash] = 0
+
+                flash[an.flash] += 1
 
             for br in browser.keys():
                 for ver in browser[br].keys():
@@ -83,9 +90,10 @@ class Command(NoArgsCommand):
 
             for ref in referrer.keys():
                 url = urlparse.urlparse(ref)
+                host = ref == '' and 'Direct traffic' or url.netloc
                 obj, created = Refferrer.objects.get_or_create(
                     site=site,
-                    host=url.netloc
+                    host=host
                 )
                 obj.count += referrer[ref]
                 obj.save()
@@ -96,4 +104,12 @@ class Command(NoArgsCommand):
                     resolution=res,
                 )
                 obj.count += resolution[res]
+                obj.save()
+
+            for fl in flash.keys():
+                obj, created = Flash.objects.get_or_create(
+                    site=site,
+                    version=fl,
+                )
+                obj.count += flash[fl]
                 obj.save()

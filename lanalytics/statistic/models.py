@@ -39,3 +39,8 @@ class Refferrer(BaseStatistic):
 class ScreenResolution(BaseStatistic):
     site = models.ForeignKey(Site, related_name='resolution')
     resolution = models.CharField(max_length=9)
+
+
+class Flash(BaseStatistic):
+    site = models.ForeignKey(Site, related_name='flash')
+    version = models.CharField(max_length=20)
