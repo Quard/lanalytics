@@ -20,8 +20,18 @@ COMPRESS_CSS = {
 COMPRESS_JS = {
     'main': {
         'source_filenames': (
-        'js/lib/jquery-min.js',
+        'js/lib/jquery.min.js',
         ),
         'output_filename': 'js/static/main.js',
+    },
+    'stat': {
+        'source_filenames': (
+        'js/stat/browser.js',
+        'js/stat/cookies.js',
+        'js/stat/swfobject.js',
+        'js/stat/detect_timezone.js',
+        'js/stat/main.js',
+        ),
+        'output_filename': 'js/stat.js',
     },
 }

@@ -4,15 +4,24 @@ from piston.handler import BaseHandler
 from lanalytics.analytics.forms import AnalyticForm
 
 
-class PostHandler(BaseHandler):
-    allowed_methods = ('POST', )
+class GetHandler(BaseHandler):
+    allowed_methods = ('GET', )
 
-    def post(self, request):
-        post = request.POST.copy()
-        post['site'] = request.session[settings.SITE_KEY]
-        form = AnalyticForm(post)
+    def read(self, request):
+        data = request.GET.copy()
+        callback = request.GET.get('callback')
+
+        # override fields
+        data['visitor'] = request.META['REMOTE_ADDR']
+        data['site'] = request.session['%s-id' % settings.SITE_KEY]
+
+        form = AnalyticForm(data)
+
         if form.is_valid():
             form.save()
             return {'status': True}
 
-        return {'status': False}
+        return {
+        'status': False,
+        'details': form.errors,
+        }

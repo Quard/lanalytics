@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 {# {% load analytics %} #}
+{% load compressed %}
 
 <head>
     <title>Lanalytics</title>
@@ -46,7 +47,7 @@
                 <input type="submit" value="Sing In" />
             </form>
         {% else %}
-            {{ user }} <a href="{% url logout %}">[x]</>
+            {{ user }} <a href="{% url logout %}">[x]</a>
         {% endif %}
         </div>
     </div>
@@ -59,5 +60,25 @@
         <a href="http://bitpapaya.com/" target="_blank">created by bitpapaya</a>{% block footer %}{% endblock %}
     </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+document.write('<sc' + 'ript type="text/javascript" charset="utf-8" src="' + 
+			   (location.method == 'https:' ? 'https://' : 'http://') + 
+			   '0.0.0.0:8000/media/js/stat.js"></sc' + 'ript>');
+</script>
+<script type="text/javascript" charset="utf-8">
+LAnalytics.init('0.0.0.0:8000', '9562aab3d86648efeb5996067cc39af504e0b467');
+</script>
+
+
+
+{% comment %}
+	
+
+{% compressed_js "stat" %}
+<script type="text/javascript" charset="utf-8">
+	LAnalytics.init('{{ active_site }}', '9562aab3d86648efeb5996067cc39af504e0b467');
+</script>
+{% endcomment %}
 </body>
 </html>

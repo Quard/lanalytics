@@ -10,3 +10,15 @@
 [submodule "testing/static_media/js/lib/jquery"]
 	path = testing/static_media/js/lib/jquery
 	url = git://github.com/jquery/jquery.git
+[submodule "static_media/js/lib/node"]
+	path = static_media/js/lib/node
+	url = git://github.com/ry/node.git
+[submodule "static_media/js/lib/jquery"]
+	path = static_media/js/lib/jquery
+	url = git://github.com/jquery/jquery.git
+[submodule "lanalytics/static_media/js/lib/node"]
+	path = lanalytics/static_media/js/lib/node
+	url = git://github.com/ry/node.git
+[submodule "lanalytics/static_media/js/lib/jquery"]
+	path = lanalytics/static_media/js/lib/jquery
+	url = git://github.com/jquery/jquery.git
