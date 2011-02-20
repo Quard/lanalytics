@@ -84,7 +84,7 @@ def analytic_graph(request, pk):
     date_start = datetime.now() - timedelta(hours=24)
     date_end = datetime.now()
     statistic = []
-    qs = Analytic.objects.filter(date_created__gte=date_start,
+    qs = Analytic.objects.filter(site=site, date_created__gte=date_start,
         date_created__lte=date_end).order_by('date_created')
     dt = None
     if qs:
