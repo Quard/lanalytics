@@ -1,10 +1,111 @@
-a {
+/*
+ * Available web fonts:
+ *   - font-family: 'AniversRegular',Arial,sans-serif;
+ *   - font-family: 'MuseoSlab500',Arial,sans-serif;
+ *   - font-family: 'MuseoSlab500Italic',Arial,sans-serif;
+ */
+/*a {
     color: #04f;
+}*/
+
+div.clean {
+	clear:both;
+}
+
+.top-decorator {
+	background-color:#000;
+	font-family: 'AniversRegular',Arial,sans-serif;
+	color:#fff;
+	font-size:11px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.top-decorator-content {
+	width:1024px;
+	margin:0 auto;
+	color:#f0f0f0;
+}
+.top-decorator a {
+	color:#fff;
+}
+.top-decorator a:hover,
+.top-decorator a:visited {
+	color:#f0f0f0;
+}
+.top-decorator a:active {
+	color:#fff;
+}
+
+#header,
+#content,
+#footer {
+	width:1024px;
+	border:0px dashed #c6c6c6;
+	margin:0 auto;
+}
+#header {
+	padding-top:20px;
+	padding-bottom:20px;
+}
+/**
+ * grid
+ */
+.grid-cell {
+	float:left;
+}
+.grid-cell-right {
+	float:right;
+}
+
+#content {
+
+}
+
+#content .text-section {
+	width:360px;
+	float:left;
+	padding:25px;
+	clear:left;
+}
+
+
+
+#content .work-section {
+	width:600px;
+	overflow:hidden;
+}
+
+#content .work-section h2 {
+	font-size:26px;
+	font-family:'AniversRegular',Arial,sans-serif;
+	color:#454545;
+	text-shadow:0 -1px #000;
+	font-weight:normal;
+	border-bottom:1px solid #454545;
+	padding-bottom:4px;
+	margin-bottom:25px;
+}
+
+
+.header-logo-section {
+	width:40%;
+}
+.header-menu-section {
+	width:60%;
 }
 
 #header h1 {
-    margin-left: 10%;
+	font-size:44px;
+	letter-spacing:-1px;
+	font-family: 'AniversRegular',Arial,sans-serif;
 }
+#header h1 a {
+	text-decoration:none;
+	color:#000;
+}
+
+
+
 #header .user input {
     width: 36%;
 }
@@ -12,60 +113,110 @@ a {
     width: auto;
 }
 #header ul.menu {
-    font-size: 105%;
+    font-family: 'AniversRegular',Arial,sans-serif;
+	font-size:16px;
 }
 #header ul.menu,
 #header ul.menu li {
     margin: 0px;
-    list-style-type: none;
+    list-style: none;
 }
 #header ul.menu li {
     padding: 0px 2px;
-    margin: 2px 3px 0px 3px;
-    display: inline-block;
-    border-bottom: 3px #f63 solid;
+	float:left;
+	margin-right:100px;
+	margin-top:17px;
+	padding-bottom:4px;
+	margin-bottom:0;
+    border-bottom: 3px #fff solid;
 }
 #header ul.menu li.current {
-    border-bottom: 3px #fb0 solid;
+    border-bottom: 3px #000 solid;
 }
 #header ul.menu li a {
     text-decoration: none;
-    color: #f63;
+    color: #787878;
 }
 #header ul.menu li.current a {
-    color: #fb0;
+    color: #000;
 }
 
 
-#content form {
+#content .text-section {
+	border-right:1px solid #000;
+	margin-top:50px;
+}
+#content .text-section dl.profile {
+	font-family:'MuseoSlab500',Arial,sans-serif;
+	font-size:15px;
+	margin-top:30px;
+}
+
+#content .text-section dl.profile dt {
+	font-weight:bold;
+	width:110px;
+	display:inline-block;
+	margin-bottom:25px;
+}
+#content .text-section dl.profile dd {
+	display:inline-block;
+	width:220px;
+	margin-bottom:25px;
+}
+
+#content .form {
     padding: 20px;
-    background-color: #9bc;
     font-size: 110%;
     display: inline-block;
     margin: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
 }
-#content form label {
-    width: 100px;
+#content .form p {
+	margin-bottom:15px;
+}
+#content .form label {
+    width: 120px;
+	font-family: 'MuseoSlab500',Arial,sans-serif;
+	font-size:12px;
     text-align: right;
     padding-right: 5px;
     display: inline-block;
 }
-#content form input {
+#content .form h2 {
+	font-family: 'MuseoSlab500',Arial,sans-serif;
+	font-size:26px;
+	color:#000;
+	margin-left:130px;
+	border-bottom:2px solid #000;
+	font-weight:normal;
+}
+#content .form input {
     margin-bottom: 5px;
     width: 350px;
+	font-size:16px;
+	font-family: 'MuseoSlab500',Arial,sans-serif;
+	padding:5px;
+	border:1px solid #000;
 }
-#content form input[type=submit],
-#content form input[type=button] {
+#content .form input[type=submit],
+#content .form input[type=button],
+#content .form .buttons {
     width: auto;
+	background-color:#000;
+	color:#fff;
+	padding-right:20px;
+	padding-left:20px;
+	margin-left:130px;
 }
 
-#content form .buttons {
-    margin-top: 15px;
-    text-align: right;
+#content .form input[type=submit]:active,
+#content .form input[type=button]:active,
+#content .form .buttons:active {
+	background-color:#232323;
 }
-#content form a {
+
+#content .form a {
     text-decoration: none;
 }
 
@@ -117,17 +268,18 @@ a {
 
 
 ul.errorlist {
-    border-left: 3px #f00 solid;
-    border-right: 3px #f00 solid;
+	font-family: 'MuseoSlab500Italic',Arial,sans-serif;
+	display:block;
+	margin-left:130px;
+	font-size:14px;
 }
 ul.errorlist,
 ul.errorlist li {
     list-style-type: none;
-    margin: 0px;
 }
 ul.errorlist li {
     padding-left: 3px;
-    color: #900;
+    color: #EE0000;
 }
 
 #js_code {

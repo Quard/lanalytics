@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, get_object_or_404
 from annoying.decorators import render_to
 
-from lanalytics.account.forms import RegistrationForm
+from lanalytics.account.forms import RegistrationForm, ProfileForm, \
+                                     ChangePasswordForm
 from lanalytics.statistic.models import Site
 from lanalytics.statistic.forms import SiteForm
 
@@ -38,7 +39,28 @@ def logout(request):
 @login_required
 @render_to('account/profile.html')
 def profile(request):
+    form = ProfileForm(instance=request.user, prefix="profile")
+    chpwd_form = ChangePasswordForm(instance=request.user)
+
+    if request.method == 'POST':
+        if 'change_profile' in request.POST:
+            form = ProfileForm(request.POST, \
+                           instance=request.user, prefix="profile")
+
+            if form.is_valid():
+                form.save()
+                return redirect('profile')
+
+        if 'change_password' in request.POST:
+            chpwd_form = ChangePasswordForm(request.POST, \
+                                            instance=request.user)
+            if chpwd_form.is_valid():
+                chpwd_form.save()
+                return redirect('profile')
+
     return {
+        'chpwd_form': chpwd_form,
+        'form': form,
         'current_menu': 'profile',
     }
 

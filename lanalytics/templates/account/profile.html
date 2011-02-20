@@ -1,4 +1,32 @@
 {% extends 'base.html' %}
+{% block  page-title-root %}{% endblock %}
+{% block content-text %}
+	<dl class="profile">
+		<dt>Login:</dt>
+		<dd>{{ user.username }}</dd>
+		<dt>Email:</dt>
+		<dd>{{ user.email }}</dd>
+		<dt>First Name:</dt>
+		<dd>{{ user.first_name }}</dd>
+		<dt>Last name:</dt>
+		<dd>{{ user.last_name }}</dd>
+	</dl>
+{% endblock %}
+{% block content-work %}
+<form action="{% url profile %}" method="post" class="form">
+	<h2>Change Profile</h2>
+	{% csrf_token %}
+	{{ form.as_p }}
 
-{% block content %}
+	<p><input type="submit" name="change_profile" value="Update &rarr;" /></p>
+</form>
+<br />
+<br />
+<form action="{% url profile %}" method="post" class="form">
+	<h2>Change Password</h2>
+	{% csrf_token %}
+	{{ chpwd_form.as_p }}
+
+	<p><input type="submit" name="change_password" value="Change &rarr;" /></p>
+</form>
 {% endblock %}

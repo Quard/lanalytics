@@ -8,7 +8,8 @@ COMPRESS_CSS_FILTERS = None
 
 COMPRESS_CSS = {
     'main': {
-        'source_filenames': ('css/reset.css', 'css/master.css',
+        'source_filenames': (
+            'css/reset.css', 'css/fonts.css', 'css/master.css',
         ),
         'output_filename': 'css/static/main.css',
         'extra_context': {

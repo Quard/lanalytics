@@ -1,0 +1,49 @@
+/*
+ * Web Fonts from fontspring.com
+ *
+ * All OpenType features and all extended glyphs have been removed.
+ * Fully installable fonts can be purchased at http://www.fontspring.com
+ *
+ * The fonts included in this stylesheet are subject to the End User License you purchased
+ * from Fontspring. The fonts are protected under domestic and international trademark and 
+ * copyright law. You are prohibited from modifying, reverse engineering, duplicating, or
+ * distributing this font software.
+ *
+ * (c) 2010 Fontspring
+ *
+ *
+ *
+ *
+ * The fonts included are copyrighted by the vendor listed below.
+ *
+ * Vendor:      exljbris
+ * License URL: http://www.fontspring.com/fflicense/exljbris
+ *
+ *
+ */
+
+@font-face {
+	font-family: 'AniversRegular';
+	src: url('fonts/Anivers_Regular-webfont.eot');
+	src: local('☺'), url('fonts/Anivers_Regular-webfont.woff') format('woff'), url('fonts/Anivers_Regular-webfont.ttf') format('truetype'), url('fonts/Anivers_Regular-webfont.svg#webfont4q0whvrj') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+@font-face {
+	font-family: 'MuseoSlab500';
+	src: url('fonts/Museo_Slab_500-webfont.eot');
+	src: local('☺'), url('fonts/Museo_Slab_500-webfont.woff') format('woff'), url('fonts/Museo_Slab_500-webfont.ttf') format('truetype'), url('fonts/Museo_Slab_500-webfont.svg#webfontCg7ZQgsV') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+@font-face {
+	font-family: 'MuseoSlab500Italic';
+	src: url('fonts/Museo_Slab_500italic-webfont.eot');
+	src: local('☺'), url('fonts/Museo_Slab_500italic-webfont.woff') format('woff'), url('fonts/Museo_Slab_500italic-webfont.ttf') format('truetype'), url('fonts/Museo_Slab_500italic-webfont.svg#webfont54II5kJY') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
