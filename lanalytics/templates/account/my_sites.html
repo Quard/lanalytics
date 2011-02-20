@@ -14,17 +14,7 @@
             <h1><a href="{% url site_statistic pk=site.pk %}">{{ site.name }}</h1>
             <a href="{{ site.url }}" target="_blank">{{ site.url }}</a><br />
             
-			<textarea name="embed-code" rows="8" cols="40">
-<script type="text/javascript" charset="utf-8">
-document.write('<sc' + 'ript type="text/javascript" charset="utf-8" src="' + 
-			   (location.method == 'https:' ? 'https://' : 'http://') + 
-			   '{{ active_site.domain }}{{ MEDIA_URL }}js/stat.js"></sc' + 'ript>');
-</script>
-<script type="text/javascript" charset="utf-8">
-LAnalytics.init('0.0.0.0:8000', '{{ site.key }}');
-</script>
-
-			</textarea>
+			<textarea name="embed-code" rows="8" cols="40">{% include 'account/embed_code.html' %}</textarea>
         </div>
     {% endfor %}
     

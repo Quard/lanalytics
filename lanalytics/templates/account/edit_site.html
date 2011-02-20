@@ -22,10 +22,7 @@
     </div>
     <div class="yui3-u-1-2">
         {% if site %}
-        <textarea id="js_code">
-<script type="text/javascript">var la_key = "{{ site.key }}";</script>
-<script type="text/javascript" src="http://lanalytics.bitpapaya.com"></script>
-        </textarea>
+            <textarea name="embed-code" class="embed-code" rows="10" cols="90">{% include 'account/embed_code.html' %}</textarea>
         {% endif %}
     </div>
 </div>
