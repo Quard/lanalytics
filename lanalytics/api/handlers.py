@@ -26,7 +26,7 @@ class PostHandler(BaseHandler):
             browser['browser']['version'] or None
         if 'os' in browser:
             post['platform'] = browser['os']['name']
-            post['platrorm_version'] = 'version' in browser['os'] and \
+            post['platform_version'] = 'version' in browser['os'] and \
                 browser['os']['version'] or None
         
         form = AnalyticForm(post)
