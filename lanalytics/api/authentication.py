@@ -8,7 +8,7 @@ class SiteKeyAuth(object):
 
     def is_authenticated(self, request):
         try:
-            site = Site.objects.get(key=request.GET.get('api_key'))
+            site = Site.objects.get(key=request.GET.get('key'))
             request.session[settings.SITE_KEY] = site.key
             request.session['%s-id' % settings.SITE_KEY] = site.id
 

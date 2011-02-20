@@ -5,8 +5,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^api/', include('lanalytics.api.urls')),
+    (r'^', include('lanalytics.api.urls')),
     (r'^', include('lanalytics.account.urls')),
+    (r'^statistic/', include('lanalytics.statistic.urls')),
     (r'^auth/', include('social_auth.urls')),
     (r'^admin/', include(admin.site.urls)),
 )

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="align-center">
+        <h1>{{ site.name }}</h1>
+        <img src="{% url statistic_graph pk=site.pk %}" width="800" height="200" />
+
+        <div>
+            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_browsers }}" />
+            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_browsers_version }}" />
+        </div>
+        <div>
+            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_os }}" />
+            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_os_version }}" />
+        </div>
+        <div>
+            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_resolution }}" />
+            <img src="https://chart.googleapis.com/chart?cht=p&chs=300x140&{{ chart_referrer }}" />
+        </div>
+    </div>
+{% endblock %}

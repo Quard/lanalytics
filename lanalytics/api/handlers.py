@@ -1,10 +1,13 @@
+import httpagentparser
+from datetime import datetime, timedelta
 from django.conf import settings
 from piston.handler import BaseHandler
 
+from lanalytics.statistic.models import Site
 from lanalytics.analytics.forms import AnalyticForm
 
 
-class GetHandler(BaseHandler):
+class PostHandler(BaseHandler):
     allowed_methods = ('GET', )
 
     def read(self, request):
@@ -18,8 +21,10 @@ class GetHandler(BaseHandler):
         form = AnalyticForm(data)
 
         if form.is_valid():
-            form.save()
+            site = form.save()
             return {'status': True}
+        else:
+            print form.errors
 
         return {
         'status': False,
