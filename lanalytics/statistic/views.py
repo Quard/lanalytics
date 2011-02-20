@@ -122,7 +122,7 @@ def analytic_graph(request, pk):
         'cht': 'ls',
         'chs': '800x200',
         'chd': 't:%s' % st,
-        'chxr': '0,0,%s' % (max(statistic) + 10),
+        'chxr': '0,0,%s' % max(statistic),
         'chxt': 'y',
         'chma': '2',
         'chls': '1',
