@@ -10,6 +10,7 @@ class SiteKeyAuth(object):
         try:
             site = Site.objects.get(key=request.GET.get('key'))
             request.session[settings.SITE_KEY] = site.key
+            request.session['%s-id' % settings.SITE_KEY] = site.id
 
             return True
         except Site.DoesNotExist:

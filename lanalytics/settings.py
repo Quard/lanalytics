@@ -44,7 +44,7 @@ STATICFILES_PREPEND_LABEL_APPS = (
     'django.contrib.admin',
 )
 
-ADMIN_MEDIA_PREFIX = '/media/admin-media/'
+ADMIN_MEDIA_PREFIX = MEDIA_URL + 'admin-media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '5z(l7tamdixlyzas4tdto%7bs5%s9_!-4o6f2*#@=8g=8zdg8_'
@@ -60,6 +60,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.request",
     "django.core.context_processors.media",
+    "lanalytics.account.context_processors.site",
     # "django.core.context_processors.static",
 )
 
@@ -101,6 +102,7 @@ INSTALLED_APPS = (
     'staticmedia',
     'compress',
     'debug_toolbar',
+    'django_extensions',
     # 'google_analytics',
     'south',
     'social_auth',

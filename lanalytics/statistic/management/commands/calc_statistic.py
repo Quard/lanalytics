@@ -12,7 +12,7 @@ class Command(NoArgsCommand):
         for site in Site.objects.all():
             browser = {}
             os = {}
-            refferrer = {}
+            referrer = {}
             resolution = {}
 
             last_update = Browser.objects.filter(site=site)\
@@ -42,18 +42,18 @@ class Command(NoArgsCommand):
                 if not an.platform in os:
                     os[an.platform] = {'__count__': 0}
                     
-                if an.platform_version:
-                    if not an.platform_version in os[an.platform]:
-                        os[an.platform][an.platform_version] = 0
-                    os[an.platform][an.platform_version] += 1
+                #if an.platform_version:
+                #    if not an.platform_version in os[an.platform]:
+                #        os[an.platform][an.platform_version] = 0
+                #    os[an.platform][an.platform_version] += 1
 
                 os[an.platform]['__count__'] += 1
 
-                # refferrer
-                if not an.refferrer in refferrer:
-                    refferrer[an.refferrer] = 0
+                # referrer
+                if not an.referrer in referrer:
+                    referrer[an.referrer] = 0
 
-                refferrer[an.refferrer] += 1
+                referrer[an.referrer] += 1
 
                 # screen resolution
                 if not an.screen_resolution in resolution:
@@ -81,13 +81,13 @@ class Command(NoArgsCommand):
                     obj.count += os[o][ver]
                     obj.save()
 
-            for ref in refferrer.keys():
+            for ref in referrer.keys():
                 url = urlparse.urlparse(ref)
                 obj, created = Refferrer.objects.get_or_create(
                     site=site,
                     host=url.netloc
                 )
-                obj.count += refferrer[ref]
+                obj.count += referrer[ref]
                 obj.save()
 
             for res in resolution.keys():

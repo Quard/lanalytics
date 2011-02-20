@@ -5,19 +5,22 @@ from lanalytics.statistic.models import Site
 
 class Analytic(models.Model):
     site = models.ForeignKey(Site, related_name='analytics')
-    visitor = models.CharField(max_length=32)
+    path = models.TextField()
+    visitor = models.IPAddressField()
     browser = models.CharField(max_length=20)
-    browser_version = models.CharField(max_length=15, null=True, blank=True)
-    platform = models.CharField(max_length=20, null=True, blank=True)
-    platform_version = models.CharField(max_length=15, null=True, blank=True)
-    time_zone = models.IntegerField()
+    browser_version = models.CharField(max_length=15)
+    platform = models.CharField(max_length=20)
+    time_zone = models.CharField(max_length=20, blank=True, default='')
 
     screen_resolution = models.CharField(max_length=9)
     window_dimensions = models.CharField(max_length=9)
     enabled_cookie = models.BooleanField()
-    have_flash = models.BooleanField()
-    have_java = models.NullBooleanField()
+    flash = models.CharField(max_length=30)
+    have_java = models.BooleanField(default=False)
 
-    refferrer = models.URLField(max_length=500, null=True, blank=True)
+    referrer = models.URLField(max_length=500, null=True, blank=True)
 
     date_created = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return "%s / %s" % (self.site, self.browser)

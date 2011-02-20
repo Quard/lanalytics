@@ -1,15 +1,14 @@
 from django.conf.urls.defaults import *
 from piston.resource import Resource
 
-from lanalytics.api.handlers import PostHandler
+from lanalytics.api.handlers import GetHandler
 from lanalytics.api.authentication import SiteKeyAuth
 
 
 ad = {'authentication': SiteKeyAuth()}
 
-post_resource = Resource(PostHandler, **ad)
+get_resource = Resource(GetHandler, **ad)
 
 urlpatterns = patterns('',
-    url(r'^la_push\.js$', post_resource, {'emitter_format': 'json'},
-        name='api_post'),
+    url(r'^analytics\.(?P<emitter_format>.+)$', get_resource, name='api_post')
 )
