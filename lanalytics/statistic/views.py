@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from annoying.decorators import render_to
 
 from lanalytics.statistic.models import Site, Browser, OS, Refferrer, \
@@ -12,6 +13,7 @@ from lanalytics.statistic.models import Site, Browser, OS, Refferrer, \
 from lanalytics.analytics.models import Analytic
 
 
+@login_required
 @render_to('statistic/statistic.html')
 def statistic(request, pk):
     site = get_object_or_404(Site, pk=pk)
@@ -76,6 +78,7 @@ def statistic(request, pk):
     return content
 
 
+@login_required
 def analytic_graph(request, pk):
     site = get_object_or_404(Site, pk=pk)
     date_start = datetime.now() - timedelta(hours=24)

@@ -28,6 +28,14 @@ def registration(request):
 
 
 @login_required
+def logout(request):
+    from django.contrib.auth import logout
+    logout(request)
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
 @render_to('account/profile.html')
 def profile(request):
     return {
