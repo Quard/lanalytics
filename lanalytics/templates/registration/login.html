@@ -21,7 +21,7 @@
         <div class="social">
             <a href="{% url begin 'google' %}">Google</a>
             <a href="{% url begin 'twitter' %}">Twitter</a>
-            <a href="{% url begin 'facebook' %}">Facebook</a>
+            {# <a href="{% url begin 'facebook' %}">Facebook</a> #}
             <a href="{% url begin 'yahoo' %}">Yahoo</a>
             <div>
                 <form action="{% url begin "livejournal" %}" method="post">{% csrf_token %}
