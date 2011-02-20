@@ -1,21 +1,54 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    <div>
-        <h2>sites: {{ user.sites.count }}</h2>
-    </div>
+{% block  page-title %}Sites{% endblock %}
 
-    {% for site in user.sites.all %}
-        <div class="site box">
-            <div class="delete">
-                <a href="{% url edit_site pk=site.pk %}">edit</a>
-                <a href="{% url delete_site pk=site.pk %}" alt="delete" title="delete">x</a>
-            </div>
-            <h1><a href="{% url site_statistic pk=site.pk %}">{{ site.name }}</h1>
-            <a href="{{ site.url }}" target="_blank">{{ site.url }}</a><br />
-            
-			<textarea name="embed-code" rows="8" cols="40">{% include 'account/embed_code.html' %}</textarea>
-        </div>
-    {% endfor %}
-    
+{% block extra_head %}
+{{ block.super }}
 {% endblock %}
+
+{% block content-text %}
+	{% if site %}
+	<div class="embed-code-holder">
+		<h3>Available Sites</h3>
+		<p>Inster this code before <pre class="code-sample-inline">&lt;/body&gt;</pre> tag</p>
+        <form action=""><textarea name="embed-code" id="embed-code" class="embed-code">{% include 'account/embed_code.html' %}</textarea></form>
+	</div>
+	{% else %}
+	<div class="embed-code-holder">
+		<h3>Embed code</h3>
+		<p>Please, fill form and save site to get embed code<br /><br /><br /></p>
+	</div>
+	{% endif %}
+{% endblock %}
+
+{% block content-work %}
+{% if request.user.lanalytic_sites.all|length > 0 %}
+<form action="" method="post">
+<table class="sites-table" border="0">
+	<tr class="header">
+		<th>&nbsp;</th>
+		<th>URL</th>
+		<th>Name</th>
+		{#<th>Key</th>#}
+		<th>&nbsp;</th>
+	</tr>
+	{% for site in request.user.lanalytic_sites.all %}
+	<tr class="{% cycle '' 'shaded' %}">
+		<td class="check"><input type="checkbox" name="key[{{ site.key }}]" value="{{ site.key }}" id="key_check_{{ site.id }}" /></td>
+		<td><a class="change-site" href="{% url edit_site pk=site.key %}">{{ site.host_name }}</a></td>
+		<td><a class="change-site" href="{% url edit_site pk=site.key %}">{{ site.name }}</a></td>
+		{#<td class="key"><input type="text" name="key[{{ site.id}}]" value="{{ site.key }}" id="key_{{ site.id }}" /></td>#}
+		<td class="controls">
+			<a href="{% url edit_site pk=site.key %}" class="edit">edit</a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="{% url delete_site pk=site.key %}" class="delete" alt="delete" onclick="return confirm('Are you sure?');" title="delete">delete</a>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+</form>
+{% else %}
+	<p class="message">No sites available. Please, <a href="{% url add_site %}">add new one</a></p>
+{% endif %}
+{% endblock %}
+

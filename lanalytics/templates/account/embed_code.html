@@ -1,7 +1,5 @@
 <script type="text/javascript" charset="utf-8">
-document.write('<sc' + 'ript type="text/javascript" charset="utf-8" src="' + 
-   (location.method == 'https:' ? 'https://' : 'http://') + 
-   '{{ active_site.domain }}{{ MEDIA_URL }}js/stat.js"></sc' + 'ript>');
+document.write('<sc' + 'ript type="text/javascript" charset="utf-8" src="' + (location.method == 'https:' ? 'https://' : 'http://') + '{{ active_site.domain }}{{ MEDIA_URL }}js/stat.js"></sc' + 'ript>');
 </script>
 <script type="text/javascript" charset="utf-8">
 LAnalytics.init('{{ active_site.domain }}', '{{ site.key }}');

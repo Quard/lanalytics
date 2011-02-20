@@ -3,11 +3,28 @@ from django.contrib.auth.models import User
 
 
 class Site(models.Model):
-    owner = models.ForeignKey(User, related_name='sites')
+    owner = models.ForeignKey(User, related_name='lanalytic_sites')
     name = models.CharField(max_length=50)
-    url = models.URLField(unique=True, verbose_name='URL')
+    url = models.URLField(unique=False, verbose_name='URL')
     key = models.CharField(max_length=40, unique=True, verbose_name='Key')
     date_created = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def host_name(self):
+        pref1 = 'http://'
+        pref2 = 'https://'
+        url = self.url
+
+        if self.url[-1] == '/':
+            url = self.url[:-1]
+
+        return url.replace(pref1, '').replace(pref2, '')
+
+    class Meta:
+        unique_together = ('owner', 'url')
+
+    def __unicode__(self):
+        return "%s - %s" % (self.owner, self.url)
 
 
 class BaseStatistic(models.Model):

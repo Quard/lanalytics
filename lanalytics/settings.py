@@ -61,6 +61,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.media",
     "lanalytics.account.context_processors.site",
+    "lanalytics.statistic.context_processors.lanalytic_sites_amount",
     # "django.core.context_processors.static",
 )
 

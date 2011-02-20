@@ -7,7 +7,7 @@ from annoying.decorators import render_to
 from lanalytics.account.forms import RegistrationForm, ProfileForm, \
                                      ChangePasswordForm
 from lanalytics.statistic.models import Site
-from lanalytics.statistic.forms import SiteForm
+from lanalytics.statistic.forms import SiteUpdateForm, SiteAddForm
 
 
 @render_to('registration/registration.html')
@@ -77,22 +77,29 @@ def my_sites(request):
 @render_to('account/edit_site.html')
 def edit_site(request, pk=None):
     site = None
+    formClass = SiteAddForm
+    key = '-'
+
     if pk:
-        site = get_object_or_404(Site, pk=pk)
+        site = get_object_or_404(Site, key=pk)
+        key = site.key
+        formClass = SiteUpdateForm
 
-    form = SiteForm(instance=site)
+    form = formClass(instance=site, initial={
+    'key': key,
+    })
+
     if request.method == 'POST':
-        post = request.POST.copy()
-        post['owner'] = request.user.pk
-        post['key'] = '-'
-        form = SiteForm(post, instance=site)
+        form = formClass(request.POST, instance=site)
         if form.is_valid():
-            form.save()
-
-            return redirect(reverse('my_sites'))
+            obj = form.save(commit=False)
+            obj.owner = request.user
+            obj.save()
+            if pk:
+                return redirect(reverse('edit_site', args=[site.key]))
+            return redirect(reverse('add_site'))
         else:
             print form.errors
-    
     
     return {
         'form': form,
@@ -103,7 +110,7 @@ def edit_site(request, pk=None):
 
 @login_required
 def delete_site(request, pk=None):
-    site = get_object_or_404(Site, pk=pk)
+    site = get_object_or_404(Site, key=pk)
     site.delete()
 
     return redirect(reverse('my_sites'))

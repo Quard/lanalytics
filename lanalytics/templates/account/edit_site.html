@@ -1,30 +1,41 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block  page-title-root %}{% endblock %}
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        <form method="post">
+{% block extra_head %}
+{{ block.super }}
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	$('#embed-code').click(function(){
+		$('#embed-code').select();
+	});
+});
+</script>
+{% endblock %}
+
+{% block content-text %}
+	{% if site %}
+	<div class="embed-code-holder">
+		<h3>Embed code</h3>
+		<p>Inster this code before <pre class="code-sample-inline">&lt;/body&gt;</pre> tag</p>
+        <form action=""><textarea name="embed-code" id="embed-code" class="embed-code">{% include 'account/embed_code.html' %}</textarea></form>
+	</div>
+	{% else %}
+	<div class="embed-code-holder">
+		<h3>Embed code</h3>
+		<p>Please, fill form and save site to get embed code<br /><br /><br /></p>
+	</div>
+	{% endif %}
+{% endblock %}
+
+{% block content-work %}
+
+        <form method="post" action="{% if not site %}{% url add_site %}{% else %}{% url edit_site pk=site.key %}{% endif %}" class="form">
             {% csrf_token %}
-            <h1>Adding site</h1>
-            {{ form.name.label_tag }}{{ form.name }}<br />
-            {{ form.name.errors }}
-            {{ form.url.label_tag }}{{ form.url }}<br />
-            {{ form.url.errors }}
-            {% if site %}
-                <label>KEY</label><span>{{ site.key }}</span>
-            {% endif %}
-            <div class="buttons">
-                <a href="javascript:history.go(-1);">Cancel</a>
-                <input type="submit" value="Add" />
-            </div>
+            <h2>{% if not site %}Add site{% else %}Change site{% endif %}</h2>
+			{{ form.as_p }}
+
+            <input type="submit" value="{% if not site %}Add{% else %}Update{% endif %}" />
         </form>
-    </div>
-    <div class="yui3-u-1-2">
-        {% if site %}
-            <textarea name="embed-code" class="embed-code" rows="10" cols="90">{% include 'account/embed_code.html' %}</textarea>
-        {% endif %}
-    </div>
-</div>
 
 {% endblock %}
