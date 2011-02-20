@@ -12,8 +12,10 @@ from lanalytics.statistic.forms import SiteUpdateForm, SiteAddForm
 
 @render_to('home.html')
 def home(request):
-    return {
-    }
+    if request.user.is_authenticated():
+        return redirect(reverse('my_sites'))
+
+    return {}
 
 
 @render_to('registration/registration.html')
