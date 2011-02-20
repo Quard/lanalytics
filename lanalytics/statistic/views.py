@@ -85,17 +85,32 @@ def analytic_graph(request, pk):
     dt = None
     if qs:
         dt = qs[0].date_created
+
     count = 0
     _delta = settings.STATISTIC_GRAPH_DELTA
+    delta = None
+    if qs:
+        delta = (qs[0].date_created - date_start).seconds
+        if delta >= _delta:
+            statistic.extend([0] * ((delta - _delta) / _delta))
+
     for obj in qs:
+        count += 1
         delta = (obj.date_created - dt).seconds
         if delta >= _delta:
-            print delta, count, dt
             statistic.append(count)
             count = 1
             if delta >= _delta * 2:
                 statistic.extend([0] * ((delta - _delta) / _delta))
             dt = obj.date_created
+
+    statistic.append(count)
+    if delta >= _delta:
+        statistic.extend([0] * ((delta - _delta) / _delta))
+
+    delta = (date_end - obj.date_created).seconds
+    if delta >= _delta:
+        statistic.extend([0] * ((delta - _delta) / _delta))
 
     st = ','.join(map(str, statistic))
     post = {

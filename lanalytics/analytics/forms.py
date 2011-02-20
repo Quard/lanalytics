@@ -8,7 +8,7 @@ class AnalyticForm(forms.ModelForm):
     def clean_referrer(self):
         site = self.cleaned_data['site']
         referrer = self.cleaned_data['referrer']
-        if site.host in referrer:
+        if site.url in referrer:
             return ''
 
         return referrer
