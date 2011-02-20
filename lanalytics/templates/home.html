@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block header %}{% endblock %}
+{% block page-title-root %}{% endblock %}
+
+{% block content-text %}
+
+		<h3><a href="{% url login %}">Sign In</a> or <a href="{% url registration %}">Sign Up</a></h3>
+		<p><strong>LAnalytics</strong> is simple service to get basic analytics for your site visitors</p>
+		<br /><br /><br />
+
+
+{% endblock %}
+
+{% block content-work %}
+<div class="main-picture">
+	<img src="{{ MEDIA_URL }}img/img0.png" alt="Browsers statistic" class="img0" />
+	<img src="{{ MEDIA_URL }}img/img1.png" alt="Adobe Flash Player statistic" class="img1" />	
+</div>
+{% endblock %}

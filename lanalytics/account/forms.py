@@ -1,8 +1,19 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.utils.safestring import mark_safe
+
+
+USERNAME_HELP = u'''
+<span class="helptext">Required. 30 characters or fewer.
+Alphanumeric characters only (letters, digits and underscores).</span>
+'''
 
 class RegistrationForm(forms.ModelForm):
+    username = forms.CharField(max_length=128,
+        widget=forms.TextInput, help_text=mark_safe(_(USERNAME_HELP)))
+    password = forms.CharField(max_length=128,
+        widget=forms.PasswordInput)
     password_confirm = forms.CharField(max_length=128,
         widget=forms.PasswordInput)
 

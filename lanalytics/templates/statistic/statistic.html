@@ -1,26 +1,32 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% block content-text %}
+	<br /><br />
+    <div>
+        <img src="https://chart.googleapis.com/chart?chco=F13D3D|B0F23D|3DECF2|007C00|7D007D|000F7D&cht=p&chtt=Browser&chs=300x200&{{ chart_browsers|safe }}" />
+		<br /><br /><br /><br />
+        <img src="https://chart.googleapis.com/chart?chco=001EFF|00FF7B|FFF700|FF0051|D4FF00|9900FF|36BFD1&cht=p&chtt=Browser+version&chs=300x200&{{ chart_browsers_version|safe }}" />
+    </div>
+	<br /><br />
 
-{% block content %}
-    <div class="align-center">
-        <h1>{{ site.name }}</h1>
+{% endblock %}
+{% block content-work %}
+    <div class="analytics">
+        <h2>Statistic for &laquo;{{ site.name }}&raquo;</h2>
         {% if not site.analytics.count %}
             <div class="msg align-center">{% trans 'NO DATA' %}</div>
         {% else %}
-        <img src="{% url statistic_graph pk=site.pk %}" width="800" height="200" />
-
-        <div>
-            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Browser&chs=300x140&{{ chart_browsers|safe }}" />
-            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Browser+version&chs=300x140&{{ chart_browsers_version|safe }}" />
-        </div>
-        <div>
-            <img src="https://chart.googleapis.com/chart?cht=p&chtt=OS&chs=300x140&{{ chart_os|safe }}" />
-            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Flash+version&chs=300x140&{{ chart_flash|safe }}" />
-        </div>
-        <div>
-            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Screen+resolution&chs=300x140&{{ chart_resolution|safe }}" />
-            <img src="https://chart.googleapis.com/chart?cht=p&chtt=Referrer&chs=300x140&{{ chart_referrer|safe }}" />
-        </div>
+        <img style="margin-left:20px;" src="{% url statistic_graph pk=site.pk %}" width="550" height="200" />
+		<br /><br /><br /><br />
+	    <div>
+	        <img src="https://chart.googleapis.com/chart?chco=D136BF|D13D7D|FFB700|00FF7B|169453|163A94|941A16&cht=p&chtt=OS&chs=270x200&{{ chart_os|safe }}" />
+	        <img src="https://chart.googleapis.com/chart?chco=2F9416|2D205A|7655EC|EDD455|DA6C68|CF68D9|91D968&cht=p&chtt=Flash+version&chs=270x200&{{ chart_flash|safe }}" />
+	    </div>
+		<br /><br />
+	    <div>
+	        <img src="https://chart.googleapis.com/chart?chco=724B7E|7D5B4B|4B7D5D|A51D8E|A1A61E|A61E44&cht=p&chtt=Screen+resolution&chs=270x200&{{ chart_resolution|safe }}" />
+	        <img src="https://chart.googleapis.com/chart?cht=p&chtt=Referrer&chs=270x200&{{ chart_referrer|safe }}" />
+	    </div>
         {% endif %}
     </div>
 {% endblock %}

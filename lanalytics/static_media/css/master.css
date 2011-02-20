@@ -78,8 +78,7 @@ div.clean {
 #content .work-section h2 {
 	font-size:26px;
 	font-family:'AniversRegular',Arial,sans-serif;
-	color:#454545;
-	text-shadow:0 -1px #000;
+	color:#000;
 	font-weight:normal;
 	border-bottom:1px solid #454545;
 	padding-bottom:4px;
@@ -187,10 +186,20 @@ div.clean {
 	margin-bottom:0;
 	margin-top:25px;
 }
-
+#content .work-section a.signup {
+	color:#000;
+	font-family:'MuseoSlab500',Arial,sans-serif;
+	text-decoration:underline;
+	display:inline-block;
+	margin-left:0px;
+}
+#content .text-section a {
+	color:#000;
+}
 #content .text-section p {
 	font-size:15px;
 	margin-top:30px;
+	line-height:26px;
 }
 #content .embed-code-holder p {
 	margin-top:15px;
@@ -221,6 +230,14 @@ div.clean {
     margin: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+}
+
+#content .form span.helptext {
+	display:block;
+	padding-left:130px;
+	font-size:12px;
+	font-family: 'MuseoSlab500Italic',Arial,sans-serif;;
+	color:#676767;
 }
 #content .form p {
 	margin-bottom:15px;
@@ -388,10 +405,6 @@ ul.errorlist li {
     height: 100px;
 }
 
-#footer {
-    margin: 3px 3%;
-}
-
 .align-center {
     text-align: center;
 }
@@ -439,4 +452,67 @@ a.delete:active {
 
 .message a {
 	color:#000;
+}
+
+#footer { 
+	font-family: 'AniversRegular',Arial,sans-serif;
+	margin-top:100px;
+	margin-bottom:50px;
+}
+
+#footer a {
+	color:#000;
+}
+
+#footer a:hover {
+	color:#343434;
+}
+
+#footer .copyright {
+	font-size:12px;
+	margin-left:30px;
+}
+.social {
+	margin-left:100px;
+	font-family: 'AniversRegular',Arial,sans-serif;
+	
+	
+}
+
+.social a {
+	color:#000;
+	border-bottom:3px solid #c9c9c9;
+	padding-bottom:2px;
+}
+
+.social a:hover {
+	border-bottom:3px solid #000;
+}
+
+#content .analytics h2 {
+	border-bottom:0;
+	margin-left:35px;
+	margin-top:45px;
+}
+
+/**
+ * Main page
+*/
+.main-picture {
+	position:relative;
+	top:0; left:0;
+	width:300px;
+	height:300px;
+}
+.main-picture .img1,
+.main-picture .img0 {
+	position:absolute;
+	top:0; left:0;
+	z-index:90;
+}
+.main-picture .img1 {
+	margin-left:0px;
+	z-index:80;
+	top:90px;
+	left:160px;
 }

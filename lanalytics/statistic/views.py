@@ -16,7 +16,7 @@ from lanalytics.analytics.models import Analytic
 @login_required
 @render_to('statistic/statistic.html')
 def statistic(request, pk):
-    site = get_object_or_404(Site, pk=pk, owner=request.user)
+    site = get_object_or_404(Site, key=pk, owner=request.user)
     date_start = datetime.now() - timedelta(days=1)
     date_end = datetime.now()
     content = {
@@ -119,13 +119,14 @@ def analytic_graph(request, pk):
     st = ','.join(map(str, statistic))
     post = {
         'cht': 'ls',
-        'chs': '800x200',
+        'chs': '550x200',
         'chd': 't:%s' % st,
         'chxr': '0,0,%s' % max(statistic),
         'chxt': 'y',
         'chma': '2',
         'chls': '1',
         'chg': '0,10,0,0',
+        'chco': 'D136BF|D13D7D|FFB700|00FF7B|169453|163A94|941A16',
     }
     f = urllib2.urlopen(
         'https://chart.googleapis.com/chart?chid=%s' % sha1(st).hexdigest(),

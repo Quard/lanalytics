@@ -2,25 +2,27 @@
 {% load i18n %}
 
 {% block header %}{% endblock %}
+{% block page-title-root %}{% endblock %}
 
-{% block content %}
+{% block content-text %}
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.username.label_tag }}{{ form.username }}<br />
-        {{ form.username.errors }}<br />
+		<h3><a href="{% url login %}">Sign In</a> or Sign Up</h3>
+		<p>You can <a href="{% url login %}">sign up</a> using external authentication service like 
+			<a href="{% url begin 'google' %}">Google</a>, <a href="{% url begin 'yahoo' %}">Yahoo</a> or 
+			<a href="{% url begin 'twitter' %}">Twitter</a>.
+		<br /><br /><br /></p>
+		
+        
+        
+{% endblock %}
 
-        {{ form.password.label_tag }}{{ form.password }}<br />
-        {{ form.password.errors }}<br />
-        
-        {{ form.password_confirm.label_tag }}{{ form.password_confirm }}<br />
-        {{ form.password_confirm.errors }}<br />
-        
-        {{ form.email.label_tag }}{{ form.email }}<br />
-        {{ form.email.errors }}<br />
-        
-        {# {{ form..label_tag }}{{ form. }}<br /> #}
-        {# {{ form..errors }}<br /> #}
+{% block content-work %}
+
+    <form method="post" action="{% url registration %}" class="form">
+		{% csrf_token %}
+		<h2>Registration form</h2>
+        {{ form.as_p }}
+
         <input type="submit" value="Sign Up" />
     </form>
 

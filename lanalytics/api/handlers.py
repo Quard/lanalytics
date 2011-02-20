@@ -23,8 +23,6 @@ class GetHandler(BaseHandler):
         if form.is_valid():
             site = form.save()
             return {'status': True}
-        else:
-            print form.errors
 
         return {
             'status': False,

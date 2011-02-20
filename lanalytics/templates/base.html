@@ -7,6 +7,7 @@
 
 <head>
     <title>Lanalytics &mdash; {% block title %}Home{% endblock %}</title>
+	<link rel="icon" href="{{ MEDIA_URL }}favicon.png" type="image/png" />
 	{% compressed_css "main" %}
 {% comment %}
 	
@@ -83,26 +84,17 @@
     </div>
 
     <div id="footer" class="yui3-u-1">
-        <a href="http://bitpapaya.com/" target="_blank">created by bitpapaya</a>{% block footer %}{% endblock %}
+        <p class="grid-cell copyright">2011: created by <a href="http://bitpapaya.com/" target="_blank"><strong>bitpapaya</strong></a></p>
+		<p class="grid-cell-right"><i>LAnalytics — simple sites analytics system</i></p>
+		{% block footer %}{% endblock %}
+		<div class="clean"></div>
     </div>
 </div>
 
-<script type="text/javascript" charset="utf-8">
-document.write('<sc' + 'ript type="text/javascript" charset="utf-8" src="' + 
-			   (location.method == 'https:' ? 'https://' : 'http://') + 
-			   '0.0.0.0:8000/media/js/stat.js"></sc' + 'ript>');
-</script>
-<script type="text/javascript" charset="utf-8">
-LAnalytics.init('0.0.0.0:8000', '9562aab3d86648efeb5996067cc39af504e0b467');
-</script>
-
-
-
-	
 
 {% compressed_js "stat" %}
 <script type="text/javascript" charset="utf-8">
-	LAnalytics.init('{{ active_site }}', '9562aab3d86648efeb5996067cc39af504e0b467');
+LAnalytics.init('{{ active_site }}', 'f9e63cac-2086-49b1-8b4d-2ce706e55231');
 </script>
 </body>
 </html>
