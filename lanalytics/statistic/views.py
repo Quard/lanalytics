@@ -114,10 +114,16 @@ def analytic_graph(request, pk):
         statistic.extend([0] * ((delta - _delta) / _delta))
 
     st = ','.join(map(str, statistic))
+    print st
     post = {
         'cht': 'ls',
         'chs': '800x200',
         'chd': 't:%s' % st,
+        'chxr': '0,0,%s' % (max(statistic) + 10),
+        'chxt': 'y',
+        'chma': '2',
+        'chls': '1',
+        'chg': '0,10,0,0',
     }
     f = urllib2.urlopen(
         'https://chart.googleapis.com/chart?chid=%s' % sha1(st).hexdigest(),
