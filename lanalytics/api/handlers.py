@@ -7,7 +7,7 @@ from lanalytics.statistic.models import Site
 from lanalytics.analytics.forms import AnalyticForm
 
 
-class PostHandler(BaseHandler):
+class GetHandler(BaseHandler):
     allowed_methods = ('GET', )
 
     def read(self, request):

@@ -23,7 +23,7 @@ var LAnalytics = {
 			'have_java': navigator.javaEnabled(),
 			'referrer': document.referrer,
 			'time_zone': timezone.utc_offset,
-			'api_key': key,
+			'key': key,
 			'callback': LAnalytics.CALLBACK_FUNC
 		};
 		LAnalytics.stat(LAnalytics.config);
