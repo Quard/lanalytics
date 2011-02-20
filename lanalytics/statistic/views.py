@@ -16,7 +16,7 @@ from lanalytics.analytics.models import Analytic
 @login_required
 @render_to('statistic/statistic.html')
 def statistic(request, pk):
-    site = get_object_or_404(Site, pk=pk)
+    site = get_object_or_404(Site, pk=pk, owner=request.user)
     date_start = datetime.now() - timedelta(days=1)
     date_end = datetime.now()
     content = {
@@ -80,7 +80,7 @@ def statistic(request, pk):
 
 @login_required
 def analytic_graph(request, pk):
-    site = get_object_or_404(Site, pk=pk)
+    site = get_object_or_404(Site, pk=pk, owner=request.user)
     date_start = datetime.now() - timedelta(hours=24)
     date_end = datetime.now()
     statistic = []
@@ -117,7 +117,6 @@ def analytic_graph(request, pk):
         statistic.extend([0] * ((delta - _delta) / _delta))
 
     st = ','.join(map(str, statistic))
-    print st
     post = {
         'cht': 'ls',
         'chs': '800x200',
