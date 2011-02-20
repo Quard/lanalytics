@@ -21,6 +21,7 @@ def statistic(request, pk):
         'site': site,
         'date_start': date_start,
         'date_end': date_end,
+        'current_menu': 'my-sites',
     }
 
     qs = list(Browser.objects.filter(site=site, version=None))
