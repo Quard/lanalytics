@@ -51,7 +51,7 @@
         <div class="yui3-u-13-24 grid-cell header-menu-section">
             {% block header %}
                 <ul class="menu">
-                    <li{% if current_menu == 'add-site' %} class="current"{% endif %}><a href="{% if not site %}{% url add_site %}{% else %}{% url edit_site pk=site.key %}{% endif %}">{% if not site %}Add{% else %}Change{% endif %} Site</a></li>
+                    <li{% if current_menu == 'add-site' %} class="current"{% endif %}><a href="{% if not site or site.owner != user %}{% url add_site %}{% else %}{% url edit_site pk=site.key %}{% endif %}">{% if not site or site.owner != user %}Add{% else %}Change{% endif %} Site</a></li>
                     <li{% if current_menu == 'my-sites' %} class="current"{% endif %}><a href="{% url my_sites %}">My Sites 
 							{% if lanalytic_sites > 0 %}<span class="sites-amount">{{ lanalytic_sites }}</span>{% endif %}</a></li>
                     <li{% if current_menu == 'profile' %} class="current"{% endif %}><a href="{% url profile %}">Profile</a></li>

@@ -4,7 +4,7 @@ from hashlib import sha1
 from datetime import datetime, timedelta
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import render_to
 
@@ -16,7 +16,11 @@ from lanalytics.analytics.models import Analytic
 @login_required
 @render_to('statistic/statistic.html')
 def statistic(request, pk):
-    site = get_object_or_404(Site, key=pk, owner=request.user)
+    user = request.user
+    site = get_object_or_404(Site, key=pk)
+    if not (site.owner == user or user in site.share_with.all()):
+        return HttpResponseForbidden()
+
     date_start = datetime.now() - timedelta(days=1)
     date_end = datetime.now()
     content = {
@@ -80,7 +84,11 @@ def statistic(request, pk):
 
 @login_required
 def analytic_graph(request, pk):
-    site = get_object_or_404(Site, pk=pk, owner=request.user)
+    user = request.user
+    site = get_object_or_404(Site, pk=pk)
+    if not (site.owner == user or user in site.share_with.all()):
+        return HttpResponseForbidden()
+
     date_start = datetime.now() - timedelta(hours=24)
     date_end = datetime.now()
     statistic = []
