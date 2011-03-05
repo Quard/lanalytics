@@ -22,3 +22,9 @@
 [submodule "lanalytics/static_media/js/lib/jquery"]
 	path = lanalytics/static_media/js/lib/jquery
 	url = git://github.com/jquery/jquery.git
+[submodule "lanalytics/static_media/js/lib/jquery.autocomplete"]
+	path = lanalytics/static_media/js/lib/jquery.autocomplete
+	url = git://github.com/agarzola/jQueryAutocompletePlugin.git
+[submodule "lanalytics/static_media/js/lib/jquery.form"]
+	path = lanalytics/static_media/js/lib/jquery.form
+	url = git://github.com/malsup/form.git

@@ -8,6 +8,7 @@ class Site(models.Model):
     url = models.URLField(unique=False, verbose_name='URL')
     key = models.CharField(max_length=40, unique=True, verbose_name='Key')
     date_created = models.DateTimeField(auto_now_add=True)
+    share_with = models.ManyToManyField(User, related_name='share_sites')
 
     @property
     def host_name(self):
