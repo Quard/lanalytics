@@ -10,3 +10,4 @@ Makefile.prod
 Makefile.staging
 *.log
 *.db
+.DS_Store

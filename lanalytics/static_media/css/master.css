@@ -291,6 +291,13 @@ div.clean {
     text-decoration: none;
 }
 
+#content .share-with {
+    font-family: 'AniversRegular',Arial,sans-serif;
+}
+#content .share-with .user a {
+    margin-left: 2px;
+    vertical-align: top;
+}
 
 #content .sites-table {
 	margin-left:25px;

@@ -50,5 +50,25 @@
 {% else %}
 	<p class="message">No sites available. Please, <a href="{% url add_site %}">add new one</a></p>
 {% endif %}
+
+{% if user.share_sites.all %}
+<br />
+<table class="sites-table" border="0">
+	<tr class="header">
+		<th>&nbsp;</th>
+		<th>URL</th>
+		<th>Name</th>
+	</tr>
+	{% for site in user.share_sites.all %}
+	<tr class="{% cycle '' 'shaded' %}">
+		<td class="check"><input type="checkbox" name="key[{{ site.key }}]" value="{{ site.key }}" id="key_check_{{ site.id }}" /></td>
+		<td><a class="change-site" href="{% url site_statistic pk=site.key %}">{{ site.host_name }}</a></td>
+		<td><a class="change-site" href="{% url site_statistic pk=site.key %}">{{ site.name }}</a></td>
+		{#<td class="key"><input type="text" name="key[{{ site.id}}]" value="{{ site.key }}" id="key_{{ site.id }}" /></td>#}
+	</tr>
+	{% endfor %}
+</table>
+{% endif %}
+
 {% endblock %}
 

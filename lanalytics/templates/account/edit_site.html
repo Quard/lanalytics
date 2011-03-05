@@ -1,16 +1,48 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block  page-title-root %}{% endblock %}
 
 {% block extra_head %}
-{{ block.super }}
-<script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-	$('#embed-code').click(function(){
-		$('#embed-code').select();
-	});
-});
-</script>
+    {{ block.super }}
+    <link href="{{ MEDIA_URL }}css/lib/jquery.autocomplete.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/lib/jquery.form.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/lib/jquery.autocomplete.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+        	$('#embed-code').click(function(){
+        		$('#embed-code').select();
+        	});
+        	$('.share-with span.user a.delete').live('click', function (){
+        	    var site = '{{ site.pk }}';
+        	    var user = $(this).parent().attr('rel');
+        	    $.getJSON('{% url api_site_share_del 'json' %}', {site: site, user: user}, function (data){
+        	        if (data['status']) {
+        	            $('.share-with span.user[rel='+ data['user']['pk'] +']').remove();
+        	        } else {
+        	            alert(data['error']);
+        	        }
+        	    });
+        	});
+        	$('#id_share_user').autocomplete('/api/find-user.json');
+        	$('#form-share').ajaxForm({
+        	    url: '{% url api_site_share 'json' %}',
+                type: 'get',
+        	    beforeSubmit: function (){
+        	        $('#form-share ul.errorlist').remove();
+        	    },
+        	    success: function (data){
+        	        if (data['status']) {
+        	            html = '<span class="user" rel="'+ data['user']['pk'] +'">'+ data['user']['username'] +'<a href="javascript:void(0);" class="delete">x</a></span>';
+        	            $('div.share-with').append(html);
+        	        } else {
+        	            html = '<ul class="errorlist"><li>'+ data['error'] +'</li></ul>';
+        	            $('#form-share input[type=text]').after(html);
+        	        }
+        	    }
+        	});
+        });
+    </script>
 {% endblock %}
 
 {% block content-text %}
@@ -38,4 +70,21 @@ $(document).ready(function(){
             <input type="submit" value="{% if not site %}Add{% else %}Update{% endif %}" />
         </form>
 
+        {% if site %}
+            <br />
+            <form method="post" id="form-share" class="form">
+                <h2>Users who can see statistics</h2>
+                {% csrf_token %}
+                <input type="hidden" name="site" value="{{ site.pk }}" />
+                <label for="id_share_user">{% trans 'User login/email' %}:</label>
+                <input type="text" name="username" id="id_share_user" />
+                <input type="submit" value="Add" />
+
+                <div class="share-with">
+                {% for u in site.share_with.all %}
+                    <span class="user" rel="{{ u.pk }}">{{ u }}<a href="javascript:void(0);" class="delete">x</a></span>
+                {% endfor %}
+                </div>
+            </form>
+        {% endif %}
 {% endblock %}

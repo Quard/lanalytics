@@ -17,11 +17,13 @@ MANAGE=python $(app)/manage.py
 TARGET_BRANCH=$(deploy_branch)
 TARGET=$(deploy_app)
 DEPLOYMENT_MODE=$(deploy_mode)
+TOOLS=tools
 
 DEPLOYMENT_DIR=.deployment
 
 # definitions
 JS_LIB_DIR=./$(app)/static_media/js/lib
+CSS_LIB_DIR=./$(app)/static_media/css/lib
 
 # auto definitions
 ifndef PYTHON
@@ -84,6 +86,8 @@ install: virtualenv
 	@echo Add required libraries
 	-git submodule add git://github.com/ry/node.git $(JS_LIB_DIR)/node
 	-git submodule add git://github.com/jquery/jquery.git $(JS_LIB_DIR)/jquery
+	-git submodule add git://github.com/agarzola/jQueryAutocompletePlugin.git $(JS_LIB_DIR)/jquery.autocomplete
+	-git submodule add git://github.com/malsup/form.git $(JS_LIB_DIR)/jquery.form
 	
 	@echo Refresh submodules
 	-git submodule update
@@ -97,6 +101,11 @@ install: virtualenv
 	-$(MAKE) -C $(JS_LIB_DIR)/jquery init
 	-$(MAKE) -C $(JS_LIB_DIR)/jquery -e JS_ENGINE=../node/build/bin/node min
 	-cp $(JS_LIB_DIR)/jquery/dist/jquery.min.js $(JS_LIB_DIR)/
+
+	@echo Building jquery libs
+	-cp $(JS_LIB_DIR)/jquery.autocomplete/jquery.autocomplete.min.js $(JS_LIB_DIR)/
+	-cp $(JS_LIB_DIR)/jquery.autocomplete/jquery.autocomplete.css $(CSS_LIB_DIR)/
+	-java -jar $(TOOLS)/yuicompressor-2.4.4.jar --nomunge -o $(JS_LIB_DIR)/jquery.form.min.js $(JS_LIB_DIR)/jquery.form/jquery.form.js
 
 todo:
 	find . -type f -not -name '*~*' -not -name 'Makefile*' -print0 | xargs -0 -e grep -n -e 'todo'
