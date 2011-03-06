@@ -36,13 +36,16 @@ def statistic(request, pk):
         '|'.join([i.name for i in qs]),
     )
     content['chart_browsers'] = chart_browsers
+    content['browsers'] = qs
 
-    qs = list(Browser.objects.filter(site=site, version__isnull=False))
+    qs = list(Browser.objects.filter(site=site, version__isnull=False)\
+        .order_by('count'))
     chart_browsers_version = 'chd=t:%s&chl=%s' % (
         ','.join([str(i.count) for i in qs]),
         '|'.join(['%s %s' % (i.name, i.version) for i in qs]),
     )
     content['chart_browsers_version'] = chart_browsers_version
+    content['browsers_version'] = qs
 
     qs = list(OS.objects.filter(site=site, version=None))
     chart_os = 'chd=t:%s&chl=%s' % (
@@ -50,6 +53,7 @@ def statistic(request, pk):
         '|'.join([i.name for i in qs]),
     )
     content['chart_os'] = chart_os
+    content['os'] = qs
 
     # qs = list(OS.objects.filter(site=site, version__isnull=False))
     # chart_os_version = 'chd=t:%s&chl=%s' % (
@@ -64,6 +68,7 @@ def statistic(request, pk):
         '|'.join([i.resolution for i in qs]),
     )
     content['chart_resolution'] = chart_resolution
+    content['resolution'] = qs
 
     qs = list(Refferrer.objects.filter(site=site))
     chart_referrer = 'chd=t:%s&chl=%s' % (
@@ -71,6 +76,7 @@ def statistic(request, pk):
         '|'.join([i.host for i in qs]),
     )
     content['chart_referrer'] = chart_referrer
+    content['referrer'] = qs
 
     qs = list(Flash.objects.filter(site=site))
     chart_flash = 'chd=t:%s&chl=%s' % (
@@ -78,6 +84,7 @@ def statistic(request, pk):
         '|'.join([i.version for i in qs]),
     )
     content['chart_flash'] = chart_flash
+    content['flash'] = qs
 
     return content
 

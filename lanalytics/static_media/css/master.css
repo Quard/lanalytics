@@ -380,6 +380,37 @@ div.clean {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
 }
+
+#content .piechart {
+    margin-bottom: 10px;
+}
+#content .piechart .info {
+    color: #999;
+    float: right;
+    text-decoration: none;
+    border-bottom: 2px #999 dashed;
+}
+#content .piechart-info {
+    display: none;
+/*    padding: 4px 10px;*/
+    background-color: #fff;
+    font-family: 'AniversRegular',Arial,sans-serif;
+}
+#content .piechart-info h3 {
+    border-bottom: 1px solid #000;
+    margin-bottom: 4px;
+}
+#content .piechart-info table {
+    width: 100%;
+}
+#content .piechart-info table th {
+    font-weight: normal;
+    text-align: left;
+}
+#content .piechart-info table td {
+    width: 40px;
+    text-align: right;
+}
 .embed-code {
     width: auto;
 }
@@ -506,6 +537,9 @@ a.delete:active {
 	border-bottom:0;
 	margin-left:35px;
 	margin-top:45px;
+}
+#content .analytics .piechart {
+    float: left;
 }
 
 /**
