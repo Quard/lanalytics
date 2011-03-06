@@ -393,7 +393,7 @@ div.clean {
 }
 #content .piechart-info {
     display: none;
-/*    padding: 4px 10px;*/
+    padding: 4px 10px;
     background-color: #fff;
     font-family: 'AniversRegular',Arial,sans-serif;
 }
