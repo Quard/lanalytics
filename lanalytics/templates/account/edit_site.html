@@ -24,7 +24,9 @@
         	        }
         	    });
         	});
-        	$('#id_share_user').autocomplete('/api/find-user.json');
+        	$('#id_share_user').autocomplete('/api/find-user.json').result(function (e, item) {
+        	    $('#id_share_user').val(item[0].replace('&gt;', '>').replace('&lt;', '<'));
+        	});
         	$('#form-share').ajaxForm({
         	    url: '{% url api_site_share 'json' %}',
                 type: 'get',
@@ -35,6 +37,7 @@
         	        if (data['status']) {
         	            html = '<span class="user" rel="'+ data['user']['pk'] +'">'+ data['user']['username'] +'<a href="javascript:void(0);" class="delete">x</a></span>';
         	            $('div.share-with').append(html);
+        	            $('#id_share_user').val('');
         	        } else {
         	            html = '<ul class="errorlist"><li>'+ data['error'] +'</li></ul>';
         	            $('#form-share input[type=text]').after(html);

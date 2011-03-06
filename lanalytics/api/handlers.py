@@ -35,6 +35,8 @@ class GetHandler(BaseHandler):
 
 class FindUserHandler(BaseHandler):
     allowed_methods = ('GET', )
+    model = User
+    fields = ('username', 'email', )
 
     def read(self, request):
         users = []
@@ -42,10 +44,11 @@ class FindUserHandler(BaseHandler):
             q = request.GET['q']
             users_qs = User.objects.exclude(pk=request.user.pk)
             users.extend(
-                [u.username for u in users_qs.filter(username__startswith=q)]
+                [u.username for u in users_qs.filter(username__istartswith=q)]
             )
             users.extend(
-                [u.email for u in users_qs.filter(email__startswith=q)\
+                ['%s &lt;%s&gt;' % (u.username, u.email) for u in \
+                    users_qs.filter(email__istartswith=q)\
                     .exclude(username__in=users)]
             )
 
@@ -60,12 +63,13 @@ class SiteShareAddHandler(BaseHandler):
         ret = {'status': False}
         user, site = None, None
         
+        username = request.GET.get('username', '').split(' ')[0]
         try:
             user = User.objects.get(
-                Q(username=request.GET['username']) | 
-                Q(email=request.GET['username'])
+                Q(username=username) | 
+                Q(email=username)
             )
-        except (KeyError, User.DoNotExist):
+        except (KeyError, User.DoesNotExist):
             ret['error'] = _('User not found')
             return ret
         

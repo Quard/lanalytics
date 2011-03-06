@@ -305,6 +305,12 @@ div.clean {
 	font-family: 'MuseoSlab500',Arial,sans-serif;
 	font-size:14px;
 }
+#content .sites-table .col1 {
+    width: 45px;
+}
+#content .sites-table .col2 {
+    width: 210px;
+}
 #content .sites-table .controls {
 	text-align:center;
 }
