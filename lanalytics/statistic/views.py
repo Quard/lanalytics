@@ -38,8 +38,7 @@ def statistic(request, pk):
     content['chart_browsers'] = chart_browsers
     content['browsers'] = qs
 
-    qs = list(Browser.objects.filter(site=site, version__isnull=False)\
-        .order_by('count'))
+    qs = list(Browser.objects.filter(site=site, version__isnull=False))
     chart_browsers_version = 'chd=t:%s&chl=%s' % (
         ','.join([str(i.count) for i in qs]),
         '|'.join(['%s %s' % (i.name, i.version) for i in qs]),
