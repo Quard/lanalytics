@@ -34,6 +34,7 @@ class BaseStatistic(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ('-count', )
 
 
 class Browser(BaseStatistic):
